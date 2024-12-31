@@ -1,11 +1,12 @@
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   return (
    <div>
-    <UserButton />
+    <Navbar />
     <div className="flex items-center justify-center flex-col py-10 w-full"></div>
     <div className="flex flex-col"></div>
     <h1 className="text-4l md:text-5xl font-bold text-center">
