@@ -27,7 +27,7 @@ const Navbar = () => {
               </div>
 
               <div className="md:flex hidden">
-                <Link href={"/budjets"} className="btn">
+                <Link href={"/budgets"} className="btn">
                   Mes budgets 
                 </Link>
                 <Link href={"/dashboard"} className="btn mx-4">
