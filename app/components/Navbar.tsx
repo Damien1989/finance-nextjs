@@ -1,11 +1,20 @@
 "use client";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import { useEffect } from "react";
+import { checkAndAddUser } from "../actions";
 
 const Navbar = () => {
   const { isLoaded, isSignedIn, user } = useUser();
 
- 
+
+  useEffect(() => {
+    if(user?.primaryEmailAddress?.emailAddress){
+      checkAndAddUser(user?.primaryEmailAddress?.emailAddress)
+    }
+  } , [user])
+
+
 
   return (
     <div className="bg-base-200/30 px-5 md:px-[10%] py-4">
@@ -14,12 +23,12 @@ const Navbar = () => {
           <>
             <div className="flex justify-between items-center">
               <div className="flex text-2xl items-center font-bold">
-                e <span className="text-accent">.Track</span>
+                My <span className="text-accent">.Finance</span>
               </div>
 
               <div className="md:flex hidden">
                 <Link href={"/budjets"} className="btn">
-                  Mes budjets
+                  Mes budgets 
                 </Link>
                 <Link href={"/dashboard"} className="btn mx-4">
                   Tableau de bord
