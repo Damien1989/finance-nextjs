@@ -1,50 +1,72 @@
+
 'use server'
 
 import prisma from "./lib/prisma"
 
 export async function checkAndAddUser(email: string | undefined) {
-    if (!email) return
+    if (!email) return;
+
     try {
         const existingUser = await prisma.user.findUnique({
-            where: {
-                email
-            }
-        })
+            where: { email }
+        });
 
         if (!existingUser) {
-            await prisma.user.create({
-                data: { email }
-            })
-            console.log("Nouvel utilisateur ajouté dans la base de données")
+            await prisma.user.create({ data: { email } });
+            console.log("Nouvel utilisateur ajouté dans la base de données");
         } else {
-            console.log("Utilisateur déjà présent dans la base de données")
+            console.log("Utilisateur déjà présent dans la base de données");
         }
 
     } catch (error) {
         console.error("Erreur lors de la vérification de l'utilisateur:", error);
     }
 }
-    export async function addBudget(email : string, name:string, amount:number, emoji: string) {
-            try {
-                    const user = await prisma.user.findUnique({
-                        where: { email }
-                    })
 
-                    if (!user) {
-                        throw new Error ('Utilisateur non trouvé')
-                    }
+export async function addBudget(email: string, name: string, amount: number, emoji: string) {
+    try {
+        const user = await prisma.user.findUnique({
+            where: { email }
+        });
 
-                    await prisma.budget.create({
-                        data: {
-                            name,
-                            amount,
-                            emoji,
-                            userId : user.id
-                        }
+        if (!user) {
+            throw new Error('Utilisateur non trouvé');
+        }
 
-                    })
-            } catch (error){
-                console.error("erreur budget", error);
-                throw error
+        await prisma.budget.create({
+            data: {
+                name,
+                amount,
+                emoji,
+                userId: user.id
             }
+        });
+    } catch (error) {
+        console.error("Erreur lors de l'ajout du budget :", error);
+        throw error;
     }
+}
+
+export async function getBudgetsByUser(email: string) {
+    try {
+        const user = await prisma.user.findUnique({
+            where: { email },
+            include: {
+                budgets: {
+                    include: {
+                        transactions: true
+                    }
+                }
+            }
+        });
+
+        if (!user) {
+            throw new Error("Utilisateur non trouvé");
+        }
+
+        return user.budgets;
+    } catch (error) {
+        console.error("Erreur lors de la récupération des budgets :", error);
+        throw error;
+    }
+}

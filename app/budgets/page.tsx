@@ -1,12 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Wrapper from "../components/Wrapper";
 import Notification from "../components/Notification";
 import { useUser } from "@clerk/nextjs";
 import EmojiPicker from "emoji-picker-react";
-import { addBudget } from "../actions";
+import { addBudget, getBudgetsByUser } from "../actions";
+import { Budget } from "@/type";
+import Link from "next/link";
+import BudgetItem from "../components/BudgetItem";
 
 const Page = () => {
   const { user } = useUser();
@@ -14,6 +17,7 @@ const Page = () => {
   const [budgetAmount, setBudgetAmount] = useState<string>("");
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
   const [selectedEmoji, setSelectedEmoji] = useState<string>("");
+  const [budgets , setBudgets] = useState<Budget[]>([])
 
   const handleEmojiSelect = (emojiObject: { emoji: string }) => {
     setSelectedEmoji(emojiObject.emoji);
@@ -57,7 +61,23 @@ const Page = () => {
     }
   };
 
-   
+  const fetchBudgets = async () => {
+    if(user?.primaryEmailAddress?.emailAddress){
+      try {
+        const userBudgets = await getBudgetsByUser(user?.primaryEmailAddress?.emailAddress)
+        setBudgets(userBudgets)
+
+      } catch (error) {
+        setNotification(`Erreur lors de la récupération des budgets: ${error}`);
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchBudgets()
+  } , [user?.primaryEmailAddress?.emailAddress])
+
+
   return (
 
     <Wrapper>
@@ -115,6 +135,14 @@ const Page = () => {
         </div>
       </div>
     </dialog>
+
+    <ul className="grid md:grid-cols-3 gap-4">
+         {budgets.map((budget) => (
+            <Link href={`/manage/${budget.id}`} key = {budget.id}>
+               <BudgetItem budget={budget} enableHover={1}></BudgetItem>
+            </Link>
+         ))}
+      </ul>
   </Wrapper>
 );
 };
