@@ -69,4 +69,29 @@ export async function getBudgetsByUser(email: string) {
         console.error("Erreur lors de la récupération des budgets :", error);
         throw error;
     }
+
 }
+
+export async function getTrasactionsByBudgetId(budgetId: string) {
+    try {
+        const budget = await prisma.budget.findUnique({
+            where: {
+                id: budgetId
+            },
+            include: {
+                transactions: true
+            }
+        })
+        if (!budget) {
+            throw new Error('Budget non trouvé.');
+        }
+
+        return budget;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des transactions:', error);
+        throw error;
+    }
+}
+
+
+
