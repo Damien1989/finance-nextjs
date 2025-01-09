@@ -74,7 +74,7 @@ const page = ({ params }: { params: Promise<{ budgetId: string }> }) => {
       } catch (error) {
         console.error("Erreur lors de la suppression du budget:", error);
       }
-      redirect("/budjets")
+      redirect("/budgets")
     }
   }
 

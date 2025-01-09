@@ -116,13 +116,13 @@ const page = () => {
                                         <Bar
                                             name="Budget"
                                             dataKey="totalBudgetAmount"
-                                            fill="#4037de"
+                                            fill="#0ff271"
                                             radius={[10, 10, 0, 0]}
                                         />
 
                                         <Bar
                                             name="Dépensé"
-                                            dataKey="totalTransactionsAmount" fill="#EEAF3A"
+                                            dataKey="totalTransactionsAmount" fill="#f50505"
                                             radius={[10, 10, 0, 0]}
                                         />
                                     </BarChart>

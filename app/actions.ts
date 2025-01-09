@@ -68,7 +68,6 @@ export async function getBudgetsByUser(email: string) {
         console.error("Erreur lors de la récupération des budgets :", error);
         throw error;
     }
-
 }
 
 export async function getTransactionsByBudgetId(budgetId: string) {
@@ -95,7 +94,6 @@ export async function addTransactionToBudget(
     budgetId: string,
     amount: number,
     description: string
-
 ) {
     try {
         const budget = await prisma.budget.findUnique({
@@ -290,7 +288,6 @@ export async function getTotalTransactionCount(email: string) {
         console.error("Erreur lors du comptage des transactions:", error);
         throw error;
     }
-
 }
 
 export async function getReachedBudgets(email: string) {
@@ -319,7 +316,6 @@ export async function getReachedBudgets(email: string) {
         console.error("Erreur lors du calcul des budgets atteints:", error);
         throw error;
     }
-
 }
 
 export async function getUserBudgetData(email: string) {
@@ -352,7 +348,7 @@ export const getLastTransactions = async (email: string) => {
             where : {
                 budget : {
                     user: {
-                       email : email 
+                    email : email 
                     }
                 }
             },
