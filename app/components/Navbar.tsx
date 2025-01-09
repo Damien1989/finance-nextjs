@@ -41,7 +41,7 @@ const Navbar = () => {
             </div>
 
             <div className="md:hidden flex mt-2 justify-center">
-                <Link href={"/budjets"} className="btn btn-sm">
+                <Link href={"/budgets"} className="btn btn-sm">
                   Mes budgets
                 </Link>
                 <Link href={"/dashboard"} className="btn mx-4 btn-sm">

@@ -32,7 +32,6 @@ const page = () => {
 
   return (
     <Wrapper>
-
       <div className='flex justify-end mb-5 '>
         <select
           className='input input-bordered input-md'
@@ -45,7 +44,6 @@ const page = () => {
           <option value="last365">Derniers 365 jours</option>
         </select>
       </div>
-
 
       <div className='overflow-x-auto w-full bg-base-200/35 p-5 rounded-xl'>
         {loading ? (
