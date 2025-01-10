@@ -42,11 +42,9 @@ const BudgetItem: React.FC<BudgetItemProps> = ({ budget , enableHover}) => {
                 <span>{totalTransactionAmount} € dépensés</span>
                 <span>{remainingAmount} € restants</span>
             </div>
-
             <div>
             <progress className="progress progress-accent w-full mt-4" value={progressValue} max="100"></progress>
             </div>
-
         </li>
     )
 };
