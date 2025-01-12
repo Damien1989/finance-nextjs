@@ -21,7 +21,6 @@ export default function Home() {
             </Link>
          ))}
       </ul>
-
    </div>
   );
 }

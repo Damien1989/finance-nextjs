@@ -14,7 +14,13 @@ model User {
   id            String       @id @default(uuid())
   email         String       @unique
   createdAt     DateTime     @default(now())
+  updatedAt     DateTime?     @updatedAt
   budgets       Budget[]
+
+  //Payment
+
+  stripeCustomerId String?
+  plan          String       @default("FREE")
 }
 
 model Budget {
@@ -37,3 +43,4 @@ model Transaction {
   emoji        String?  
   createdAt    DateTime   @default(now())
 }
+
