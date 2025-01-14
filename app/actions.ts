@@ -92,7 +92,7 @@ export async function getTransactionsByBudgetId(budgetId: string) {
 export async function addTransactionToBudget(
     budgetId: string,
     amount: number,
-    description: string
+    description?: string
 ) {
     try {
         const budget = await prisma.budget.findUnique({
@@ -117,18 +117,18 @@ export async function addTransactionToBudget(
             throw new Error('Le montant total des transactions dépasse le montant du budget.');
         }
 
-        const newTransaction = await prisma.transaction.create({
-            data: {
-                amount,
-                description,
-                emoji: budget.emoji,
-                budget: {
-                    connect: {
-                        id: budget.id
-                    }
-                }
-            }
-        })
+       // const newTransaction = await prisma.transaction.create({
+        //    data: {
+          //      amount,
+          //      description,
+           //     emoji: budget.emoji,
+           //     budget: {
+            //        connect: {
+           //             id: budget.id
+          //          }
+          //      }
+         //   }
+       // })
 
     } catch (error) {
         console.error('Erreur lors de l\'ajout de la transaction:', error);

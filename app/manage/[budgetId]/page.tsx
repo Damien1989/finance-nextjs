@@ -8,7 +8,7 @@ import Notification from '@/app/components/Notification'
 import { Send, Trash } from 'lucide-react'
 import { redirect } from 'next/navigation'
 
-const page = ({ params }: { params: Promise<{ budgetId: string }> }) => {
+const Page = ({ params }: { params: Promise<{ budgetId: string }> }) => {
   const [budgetId, setBudgetId] = useState<string>('')
   const [budget, setBudget] = useState<Budget>()
   const [description, setDescription] = useState<string>('')
@@ -97,7 +97,7 @@ const page = ({ params }: { params: Promise<{ budgetId: string }> }) => {
     <Wrapper>
 
       {notification && (
-        < Notification message={notification} onclose={closeNotification}></Notification>
+        < Notification message={notification} onClose={closeNotification}></Notification>
       )}
       {budget && (
         <div className='flex md:flex-row flex-col'>
@@ -200,4 +200,4 @@ const page = ({ params }: { params: Promise<{ budgetId: string }> }) => {
   )
 }
 
-export default page
+export default Page

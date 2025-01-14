@@ -62,7 +62,7 @@ const Navbar = () => {
                   Se connecter
                 </Link>
                 <Link href={"/sign-up"} className="btn mx-4 btn-sm btn-accent">
-                  S'inscrire
+                  S&apos; inscrire
                 </Link>
               </div>
           </div>

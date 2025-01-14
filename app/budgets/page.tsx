@@ -98,7 +98,7 @@ const Page = () => {
             ✕
           </button>
         </form>
-        <h3 className="font-bold text-lg">Création d'un budget</h3>
+        <h3 className="font-bold text-lg">Création de mon budget</h3>
         <p className="py-4">Permet de contrôler ses dépenses</p>
         <div className="w-full flex flex-col">
           <input
