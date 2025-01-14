@@ -11,7 +11,7 @@ import BudgetItem from '../components/BudgetItem';
 import Link from 'next/link';
 import TransactionItem from '../components/TransactionItem';
 
-const page = () => {
+const Page = () => {
     const { user } = useUser();
     const [totalAmount, setTotalAmount] = useState<number | null>(null)
     const [isLoading, setIsLoading] = useState(true);
@@ -96,7 +96,7 @@ const page = () => {
                                 </span>
                             </div>
 
-                            <Landmark className='bg-accent w-9 h-9 rounded-full p-1 text-white' />
+                            s     <Landmark className='bg-accent w-9 h-9 rounded-full p-1 text-white' />
                         </div>
                     </div>
 
@@ -164,4 +164,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
